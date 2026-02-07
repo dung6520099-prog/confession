@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <path d="M50 30 C50 10, 10 10, 10 40 C10 70, 50 90, 50 90 C50 90, 90 70, 90 40 C90 10, 50 10, 50 30" 
                           fill="none" stroke="#ff2d55" stroke-width="4" id="svg-heart-path" />
                 </svg>
-                <p>Mình cũng có cảm tình với bạn ấy, vậy liệu bạn có muốn đồng hành với mình không? ❤️</p>
+                <p>Mình cũng có cảm tình với bạn, vậy liệu bạn có muốn đồng hành với mình không? ❤️</p>
                 <div style="margin-top: 25px;">
                     <button id="btn-final-yes" class="btn-cool">Có!</button>
                     <button id="btn-think" class="btn-cool btn-outline">Để mình xem...</button>
