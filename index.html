@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Girl 💞</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="bg-stickers-container"></div>
+
+        <!-- Beauty Eye Elements -->
+        <div id="eye-container" class="beauty-eye">
+            <div class="pupil"></div>
+        </div>
+        <div id="tear-drop" class="tear-drop"></div>
+
+        <!-- Global Cupid -->
+        <div id="cupid-wrapper">
+            <div class="cupid-char">
+                👼<span class="bow">🏹</span>
+            </div>
+        </div>
+
+        <!-- Arrow Template -->
+        <div id="arrow-template" class="arrow-container" style="display: none;">
+            <div class="arrow-x">
+                <div class="arrow-y">
+                    <span class="heart-arrow">💘</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 1: Intro -->
+        <section id="s1" class="screen active">
+            <div class="glass-panel">
+                <h1 style="font-size: 2.2rem; margin-bottom: 30px; font-weight: 900;">Tớ có thứ này muốn nói với cậu! 💞</h1>
+                <button id="btn-start" class="btn-cool">Nói đi!</button>
+            </div>
+        </section>
+
+        <!-- Screen 2: Question -->
+        <section id="s2" class="screen">
+            <div class="glass-panel" style="background: transparent; border: none; box-shadow: none;">
+                <div class="flip-container">
+                    <div class="flipper" id="card-flipper">
+                        <div class="front"><p>Bấm vào đây để xem đó là gì nè 🎁</p></div>
+                        <div class="back"><p>Bạn có tình cảm gì với mình không? 🤔</p></div>
+                    </div>
+                </div>
+                <div id="s2-options" style="margin-top: 40px; opacity: 0; pointer-events: none; transition: 0.8s;">
+                    <button id="btn-yes" class="btn-cool">Yes!!!</button>
+                    <button id="btn-no" class="btn-cool btn-outline">maybe no...</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen Dynamic -->
+        <section id="s-dynamic" class="screen">
+            <div id="message-target" class="glass-panel" style="transform: scale(0); opacity: 0; transition: all 0.5s ease;">
+                <!-- Dynamic content -->
+            </div>
+        </section>
+
+        <!-- Screen Finale -->
+        <section id="s-finale" class="screen">
+            <div id="morph-container" style="display: flex; flex-direction: column; align-items: center;"></div>
+            <h1 id="finale-text" style="margin-top: 80px; opacity: 0; transition: 1.5s; font-weight: 900; color: var(--primary);">Yay thế là mình hết cô đơn rồi 😍!</h1>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

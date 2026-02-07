@@ -1,0 +1,214 @@
+:root {
+    --primary: #ff2d55;
+    --secondary: #ff758f;
+    --accent: #ffb3c1;
+    --glass: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at center, #fff0f3 0%, #ffb3c1 100%);
+    height: 100vh;
+    overflow: hidden;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 2000px;
+}
+
+/* --- Screen System --- */
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* --- Transitions --- */
+.zoom-out { animation: zoomOut 0.8s forwards; }
+@keyframes zoomOut { to { transform: scale(2); opacity: 0; } }
+
+.wipe-left { animation: wipeLeft 0.8s forwards; }
+@keyframes wipeLeft { to { transform: translateX(-100%); opacity: 0; } }
+
+.fade-in { animation: fadeIn 0.8s forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+/* --- Beauty Eye --- */
+.beauty-eye {
+    position: absolute;
+    top: 50px;
+    width: 120px;
+    height: 80px;
+    background: white;
+    border-radius: 50% 50% 50% 50% / 100% 100% 0% 0%;
+    border: 4px solid #00b4d8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    z-index: 200;
+    box-shadow: 0 0 30px rgba(0, 180, 216, 0.4);
+    transition: opacity 0.5s;
+}
+
+.pupil {
+    width: 35px;
+    height: 35px;
+    background: #03045e;
+    border-radius: 50%;
+    position: relative;
+    animation: pupilPulse 1.5s infinite alternate;
+}
+
+@keyframes pupilPulse {
+    from { transform: scale(1); box-shadow: 0 0 5px #00b4d8; }
+    to { transform: scale(1.3); box-shadow: 0 0 25px #00b4d8; }
+}
+
+/* --- Center Morph Tear --- */
+.tear-drop {
+    position: absolute;
+    width: 25px;
+    height: 35px;
+    background: #48cae4;
+    border-radius: 50% 50% 50% 50% / 100% 100% 20% 20%;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    z-index: 190;
+    transition: opacity 0.3s;
+}
+
+@keyframes tearFall {
+    0% { top: 130px; transform: translateX(-50%) scale(1); }
+    100% { top: 50vh; transform: translateX(-50%) scale(1.2); }
+}
+
+.falling { animation: tearFall 1s ease-in forwards; }
+
+/* --- Stickers --- */
+#bg-stickers-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bg-sticker {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.25;
+    animation: floatFaster 2s ease-in-out infinite alternate;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s;
+}
+
+@keyframes floatFaster {
+    0% { transform: translateY(0) rotate(-10deg); }
+    100% { transform: translateY(-70px) rotate(10deg); }
+}
+
+.sticker-exit { 
+    opacity: 0 !important; 
+    transform: translate(var(--exit-x, 0), var(--exit-y, 0)) scale(0) rotate(360deg) !important; 
+}
+
+/* --- UI Panels & Buttons --- */
+.glass-panel { 
+    background: var(--glass); 
+    backdrop-filter: blur(15px); 
+    border: 1px solid var(--glass-border); 
+    border-radius: 30px; 
+    padding: 50px; 
+    text-align: center; 
+    box-shadow: var(--shadow);
+}
+
+.btn-cool { 
+    background: var(--primary); 
+    color: white; 
+    border: none; 
+    padding: 18px 40px; 
+    border-radius: 15px; 
+    font-size: 1.2rem; 
+    font-weight: 700; 
+    cursor: pointer; 
+    transition: 0.4s; 
+    margin: 15px; 
+}
+
+.btn-cool:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(255,45,85,0.4); 
+}
+
+.btn-outline { 
+    background: transparent; 
+    border: 3px solid var(--primary); 
+    color: var(--primary); 
+}
+
+/* --- Cupid & Arrows --- */
+#cupid-wrapper {
+    position: absolute; left: 5%; bottom: 5%; width: 100px; height: 100px;
+    background: var(--glass); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; z-index: 100; transition: transform 1s; transform: translateX(-200px);
+    box-shadow: var(--shadow);
+}
+#cupid-wrapper.ready { transform: translateX(0); }
+.bow { position: absolute; right: -10px; font-size: 2.5rem; }
+.drawing .bow { animation: drawBow 0.5s infinite alternate; }
+@keyframes drawBow { to { transform: translateX(-5px) scaleX(0.8); } }
+
+.arrow-container { position: absolute; z-index: 150; pointer-events: none; }
+.heart-arrow { font-size: 3rem; filter: drop-shadow(0 0 15px var(--primary)); }
+
+/* --- Card Flip --- */
+.flip-container { width: 350px; height: 250px; perspective: 1000px; margin: 0 auto; }
+.flipper { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.8s; cursor: pointer; }
+.flipper.flipped { transform: rotateY(180deg); }
+.front, .back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 30px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: var(--shadow); }
+.front { background: white; border: 2px solid var(--accent); }
+.back { background: #fff0f3; border: 2px solid var(--primary); transform: rotateY(180deg); }
+
+/* --- Finale --- */
+.heart-blossom { position: relative; width: 150px; height: 150px; background: var(--primary); transform: rotate(-45deg) scale(0); transition: 1.5s; box-shadow: 0 0 30px var(--primary); }
+.heart-blossom::before, .heart-blossom::after { content: ''; position: absolute; width: 150px; height: 150px; background: var(--primary); border-radius: 50%; }
+.heart-blossom::before { top: -75px; left: 0; }
+.heart-blossom::after { left: 75px; top: 0; }
+.heart-blossom.show { transform: rotate(-45deg) scale(1.2); animation: pulseHeart 1.5s infinite 1.5s; }
+@keyframes pulseHeart { 0%, 100% { transform: rotate(-45deg) scale(1.2); } 50% { transform: rotate(-45deg) scale(1.4); } }
+
+.firework, .heart-rain-particle { position: absolute; pointer-events: none; z-index: 1000; }
+@keyframes rainDown { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(110vh); opacity: 0; } }
+
+@media (max-width: 600px) {
+    .glass-panel { padding: 30px 20px; }
+    h1 { font-size: 1.5rem !important; }
+    .flip-container { width: 280px !important; height: 200px !important; }
+    #cupid-wrapper { width: 70px; height: 70px; font-size: 2rem; }
+}
